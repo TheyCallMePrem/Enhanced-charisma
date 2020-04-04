@@ -1,0 +1,64 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+signed main(){
+    int t;
+    cin>>t;
+    int z=0;
+    
+    for(int i=1;i<=t;i++){
+        int n;
+        cin>>n;
+        int N=n;
+        vector<pair<pair<int,int>,int>> al;
+        for(int i=0;i<n;i++){
+            int A1,B1;
+            cin>>A1>>B1;
+            al.push_back(make_pair(make_pair(A1,B1),i));
+            z=5;
+        }
+        z=9;
+        sort(al.begin(),al.end());
+        string ans1;
+        vector<pair<int,int>> gen;
+        bool flg=true;
+        int csl=-1;
+        int cel=0;
+        int jsl=-1;
+        int jel=0;
+        for(int i=0;i<n;i++){
+            int pl=al[i].first.first;
+            int ql=al[i].first.second;
+            z=0;
+            int idx=al[i].second;
+            if(csl<pl && cel<=pl && csl<ql && cel<=ql){
+                csl=pl;
+                cel=ql;
+                gen.push_back(make_pair(idx,'C'));
+                z=0;
+            }
+            else if(jsl<pl && jel<=pl && jsl<ql && jel<=ql){
+                jsl=pl;
+                jel=ql;
+                gen.push_back(make_pair(idx,'J'));
+                z=0;
+            }
+            else{
+                flg=false;
+                break;
+                z=0;
+            }
+        }
+        sort(gen.begin(),gen.end());
+        for(int i=0;i<gen.size();i++){
+            ans1+=gen[i].second;
+        }
+        if(flg){
+            cout<<"Case #"<<i<<": "<<ans1<<"\n";
+        }
+        else{
+            cout<<"Case #"<<i<<": "<<"IMPOSSIBLE\n";
+        }
+    }
+    return 0;
+}
