@@ -1,0 +1,49 @@
+n=0
+t=int(input())
+i=0
+j=0
+k=0
+tr=0
+colcount=0
+rowcount=0
+case=1
+result=[]
+done=100
+for k in range (t):
+    
+    n=int(input())
+    matrix = []
+
+    
+    for i in range(n):          
+           matrix.append([int(s) for s in input().split(" ")])
+        
+    i=0
+    j=0
+    for i in range(n):          
+        for j in range(n):  
+            if(i==j):
+                tr=tr+int(matrix[i][j])
+            for x in range (n):
+                if(matrix[i][j]==matrix[i][x]  and (j!=x) and (done!=i)):
+                    done=i
+                    rowcount+=1
+            x=0
+        for x in range (n):
+                if(matrix[i][j]==matrix[x][j]  and (i!=x)):
+                    colcount+=1
+        j=0
+    result.append([tr,rowcount,colcount])    
+    
+    case+=1
+    rowcount=0
+    colcount=0
+    tr=0
+    
+i=0
+for i in range (t):
+    print("Case #",end="")
+    print(i+1,end="")
+    print(": ",end="")
+    print(result[i][0],result[i][1],result[i][2],end="")    
+    print()
