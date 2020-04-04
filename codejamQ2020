@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+#define ll long long
+int main()
+{
+    ll t;
+    std::cin >> t;
+    ll test = 1;
+    while (t--)
+    {
+        std::string x;
+        std::cin >> x;
+        std::vector<ll> vc;
+        ll n = x.length();
+        for (ll i = 0; i < x.length(); i++)
+        {
+            vc.push_back(x[i] - '0');
+        }
+        std::cout << "Case #" << test << ": ";
+        ll cc = vc[0];
+        while (cc--)
+        {
+            std::cout << '(';
+        }
+        std::cout << vc[0];
+
+        for (ll i = 1; i < n; i++)
+        {
+            if (vc[i] - vc[i - 1] > 0)
+            {
+                ll c = abs(vc[i] - vc[i - 1]);
+                while (c--)
+                {
+                    std::cout << '(';
+                }
+                std::cout << vc[i];
+            }
+            else if (vc[i] - vc[i - 1] == 0)
+            {
+                std::cout << vc[i];
+            }
+            else
+            {
+                ll c = abs(vc[i] - vc[i - 1]);
+                while (c--)
+                {
+                    std::cout << ')';
+                }
+                std::cout << vc[i];
+            }
+        }
+        while (vc[n - 1]--)
+        {
+            std::cout << ')';
+        }
+
+        std::cout << " " << std::endl;
+        test++;
+    }
+}
